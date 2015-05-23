@@ -48,7 +48,7 @@ BOOL CompactDatabase(HWND hWnd, LPCTSTR lpszMDBFilePath)
 			PathAppend(szTempDirectoryPath, TEXT("TmpDatabase.mdb"));
 			try
 			{
-				hr = pEngine->CompactDatabase((_bstr_t)lpszMDBFilePath, (_bstr_t)szTempDirectoryPath);// , vtMissing, vtMissing, ";pwd=YourPassword");
+				hr = pEngine->CompactDatabase((_bstr_t)lpszMDBFilePath, (_bstr_t)szTempDirectoryPath);
 			}
 			catch (_com_error& e)
 			{
