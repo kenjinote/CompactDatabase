@@ -1,10 +1,9 @@
-#define UNICODE
-
 #pragma comment(lib,"rpcrt4")
 #pragma comment(lib,"shlwapi")
 
 #include <windows.h>
 #include <shlwapi.h>
+#include <odbcinst.h>
 
 #import "C:\Program Files (x86)\Common Files\Microsoft Shared\DAO\dao360.dll" rename_namespace("DAO") rename("EOF", "adoEOF")
 
@@ -67,6 +66,24 @@ BOOL CompactDatabase(HWND hWnd, LPCTSTR lpszMDBFilePath)
 	}
 	CoUninitialize();
 	return bRet;
+}
+
+BOOL CompactDatabase2(HWND hWnd, LPCTSTR lpszFilePath)
+{
+	if (!PathFileExists(lpszFilePath))
+	{
+		return FALSE;
+	}
+	CoInitialize(NULL);
+	TCHAR szAttributes[1024];
+	wsprintf(szAttributes, TEXT("COMPACT_DB=\"%s\" \"%s\" General\0"), lpszFilePath, lpszFilePath);
+	if (!SQLConfigDataSource(hWnd, ODBC_ADD_DSN, TEXT("Microsoft Access Driver (*.mdb)"), szAttributes))
+	{
+		CoUninitialize();
+		return FALSE;
+	}
+	CoUninitialize();
+	return TRUE;
 }
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
