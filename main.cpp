@@ -60,6 +60,10 @@ BOOL CompactDatabase(HWND hWnd, LPCTSTR lpszMDBFilePath)
 					bRet = TRUE;
 				}
 			}
+			if (PathRemoveFileSpec(szTempDirectoryPath) && PathIsDirectory(szTempDirectoryPath))
+			{
+				RemoveDirectory(szTempDirectoryPath);
+			}
 		}
 		pEngine->Release();
 		pEngine = NULL;
