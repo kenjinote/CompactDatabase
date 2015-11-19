@@ -60,6 +60,10 @@ BOOL CompactDatabase(HWND hWnd, LPCTSTR lpszMDBFilePath)
 					bRet = TRUE;
 				}
 			}
+			else
+			{
+				DeleteFile(szTempDirectoryPath);
+			}
 			if (PathRemoveFileSpec(szTempDirectoryPath) && PathIsDirectory(szTempDirectoryPath))
 			{
 				RemoveDirectory(szTempDirectoryPath);
@@ -137,7 +141,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPreInst, LPSTR pCmdLine, int 
 	RegisterClass(&wndclass);
 	HWND hWnd = CreateWindow(
 		szClassName,
-		TEXT("ƒhƒ‰ƒbƒO‚³‚ê‚½ƒf[ƒ^ƒx[ƒXMDB‚ğÅ“K‰»‚·‚é"),
+		TEXT("ãƒ‰ãƒ©ãƒƒã‚°ã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹MDBã‚’æœ€é©åŒ–ã™ã‚‹"),
 		WS_OVERLAPPEDWINDOW,
 		CW_USEDEFAULT,
 		0,
