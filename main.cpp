@@ -1,4 +1,4 @@
-#pragma comment(lib,"rpcrt4")
+﻿#pragma comment(lib,"rpcrt4")
 #pragma comment(lib,"shlwapi")
 
 #include <windows.h>
